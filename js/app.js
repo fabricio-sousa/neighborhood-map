@@ -130,4 +130,7 @@ function initMap() {
   // Declare a new infoWindow object.
 	infoWindow = new google.maps.InfoWindow();
 
+  // Apply all KnockOut Bindings.
+  ko.applyBindings(new ViewModel());
+
 }
