@@ -134,3 +134,24 @@ function initMap() {
   ko.applyBindings(new ViewModel());
 
 }
+
+// This function allows each marker to be clicked triggering a google maps marker event.
+function clickMarker(name) {
+	markers.forEach(function(markerItem) {
+		if (markerItem.name == name) {
+			google.maps.event.trigger(markerItem.marker, 'click');
+		}
+	});
+}
+
+// This function allows a marker to have a bounce animation.
+function markerBounce(marker) {
+	if (marker.getAnimation() !== null) {
+		marker.setAnimation(null);
+	} else {
+		marker.setAnimation(google.maps.Animation.BOUNCE);
+		setTimeout(function() {
+			marker.setAnimation(null);
+		}, 1200);
+	}
+}
