@@ -155,3 +155,8 @@ function markerBounce(marker) {
 		}, 1200);
 	}
 }
+
+// Google Maps API error handling.
+function apiError() {
+	alert("There was an issue loading the Google Maps API.");
+}
