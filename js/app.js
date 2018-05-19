@@ -156,6 +156,43 @@ function markerBounce(marker) {
 	}
 }
 
+// geocodes the address passed from the forEach function, for each park in Parks.
+function geocodePark(geocoder, park, parksMap) {
+
+	var address = park.address;
+
+	// Uses Google's geocode method to parse the latlng of the park.address then set it on map.
+	geocoder.geocode({'address': address}, function(results, status) {
+		if (status === 'OK') {
+			parksMap.setCenter(results[0].geometry.location);
+
+			// Create a new park marker object based on geocode latlng results.
+      // Animate the marker.
+			park.marker = new google.maps.Marker({
+				map: parksMap,
+        position: results[0].geometry.location,
+  			animation: google.maps.Animation.DROP
+			});
+
+			// Add name and marker to marker object.
+			markers.push({
+				name: park.name,
+				marker: park.marker
+			});
+
+			// Event listener for when user clicks on marker.
+      // Clicking marker will show the Wikipedia info and bounce the marker.
+      google.maps.event.addListener(park.marker, 'click', function() {
+  			wikiInfo(park);
+  			markerBounce(park.marker);
+  		});
+
+    } else {
+			alert('This location has an invalid address.');
+		}
+  });
+}
+
 // Google Maps API error handling.
 function apiError() {
 	alert("There was an issue loading the Google Maps API.");
