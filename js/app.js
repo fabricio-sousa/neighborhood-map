@@ -198,7 +198,7 @@ function wikiInfo(park) {
 
 	contentString = "<span>Test</span>"
 	infoWindow.setContent(contentString);
-	infoWindow.open(map, place.marker);
+	infoWindow.open(map, park.marker);
 }
 
 // This is the ViewModel function connecting all views, model and user input functionalities.
@@ -211,26 +211,25 @@ var ViewModel = function() {
 	this.searchParks = ko.computed(function() {
 		var search = self.search().toLowerCase();
 		if (!search) {
-			Parks.forEach(function(park) {
-				if (park.marker) {
-					park.marker.setVisible(true);
+			Parks.forEach(function(place) {
+				if (place.marker) {
+					place.marker.setVisible(true);
 				}
 			});
 			return Parks;
 		} else {
-			return ko.utils.arrayFilter(Parks, function(park) {
-		 		var result = place.name.toLowerCase().indexOf(search) !== -1;
-		 		if (result) {
-		 			park.marker.setVisible(true);
+			return ko.utils.arrayFilter(Parks, function(place) {
+		 		var match = place.name.toLowerCase().indexOf(search) !== -1;
+		 		if (match) {
+		 			place.marker.setVisible(true);
 		 		} else {
-		 			park.marker.setVisible(false);
+		 			place.marker.setVisible(false);
 		 		}
-		 		return result;
+		 		return match;
 		 	});
 		}
 	});
 };
-
 
 
 // Google Maps API error handling.
