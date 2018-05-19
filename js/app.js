@@ -6,3 +6,7 @@ var Parks = [
 	{name: 'Morikami Gardens', address: '4000 Morikami Park Rd, Delray Beach, FL 33446'},
 	{name: 'Quiet Waters Park', address: '401 S Powerline Rd, Deerfield Beach, FL 33442'}
 ];
+
+// Global variables. Empty array for markers and infoWindow variable.
+var markers = [];
+var infoWindow;
