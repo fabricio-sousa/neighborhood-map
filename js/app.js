@@ -208,7 +208,27 @@ var ViewModel = function() {
 	this.search = ko.observable("");
 
 	// Filter Parks based on user input.
-
+	searchParks = ko.computed(function() {
+		var search = self.search().toLowerCase();
+		if (!search) {
+			Parks.forEach(function(park) {
+				if (place.marker) {
+					place.marker.setVisible(true);
+				}
+			});
+			return Parks;
+		} else {
+			return ko.utils.arrayFilter(Parks, function(park) {
+		 		var result = place.name.toLowerCase().indexOf(search) !== -1;
+		 		if (result) {
+		 			place.marker.setVisible(true);
+		 		} else {
+		 			place.marker.setVisible(false);
+		 		}
+		 		return result;
+		 	});
+		}
+	});
 };
 
 
