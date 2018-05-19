@@ -201,6 +201,16 @@ function wikiInfo(park) {
 	infoWindow.open(map, place.marker);
 }
 
+// This is the ViewModel function connecting all views, model and user input functionalities.
+var ViewModel = function() {
+
+	var self = this;
+	this.search = ko.observable("");
+
+	// Filter Parks based on user input.
+
+};
+
 
 
 // Google Maps API error handling.
