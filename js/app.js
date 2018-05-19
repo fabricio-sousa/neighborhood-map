@@ -127,4 +127,7 @@ function initMap() {
     geocodePark(geocoder, park, map);
   });
 
+  // Declare a new infoWindow object.
+	infoWindow = new google.maps.InfoWindow();
+
 }
