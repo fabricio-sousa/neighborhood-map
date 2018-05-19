@@ -119,4 +119,9 @@ function initMap() {
     mapTypeControl: false
   });
 
+  // Declare a new geocoder object.
+  var geocoder = new google.maps.Geocoder();
+
+  
+
 }
