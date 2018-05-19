@@ -208,7 +208,7 @@ var ViewModel = function() {
 	this.search = ko.observable("");
 
 	// Filter Parks based on user input.
-	searchParks = ko.computed(function() {
+	this.searchParks = ko.computed(function() {
 		var search = self.search().toLowerCase();
 		if (!search) {
 			Parks.forEach(function(park) {
