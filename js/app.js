@@ -193,6 +193,14 @@ function geocodePark(geocoder, park, parksMap) {
   });
 }
 
+// This function allows the wiki API to provide marker infoWindow content.
+function wikiInfo(park) {
+
+	contentString = "<span>Test</span>"
+	infoWindow.setContent(contentString);
+	infoWindow.open(map, place.marker);
+}
+
 
 
 // Google Maps API error handling.
