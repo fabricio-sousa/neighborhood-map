@@ -122,6 +122,9 @@ function initMap() {
   // Declare a new geocoder object.
   var geocoder = new google.maps.Geocoder();
 
-  
+  // For each park in Parks, call the geocodePark function which geocodes the addresses.
+  Parks.forEach(function(park) {
+    geocodePark(geocoder, park, map);
+  });
 
 }
