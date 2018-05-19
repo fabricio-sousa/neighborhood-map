@@ -212,8 +212,8 @@ var ViewModel = function() {
 		var search = self.search().toLowerCase();
 		if (!search) {
 			Parks.forEach(function(park) {
-				if (place.marker) {
-					place.marker.setVisible(true);
+				if (park.marker) {
+					park.marker.setVisible(true);
 				}
 			});
 			return Parks;
@@ -221,9 +221,9 @@ var ViewModel = function() {
 			return ko.utils.arrayFilter(Parks, function(park) {
 		 		var result = place.name.toLowerCase().indexOf(search) !== -1;
 		 		if (result) {
-		 			place.marker.setVisible(true);
+		 			park.marker.setVisible(true);
 		 		} else {
-		 			place.marker.setVisible(false);
+		 			park.marker.setVisible(false);
 		 		}
 		 		return result;
 		 	});
