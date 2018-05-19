@@ -18,6 +18,11 @@
   </div>
 
   <div>
+		<ul data-bind="foreach: searchParks">
+			<li>
+				<a href="#" data-bind="text: name" onclick="clickMarker(this.innerHTML);"></a>
+			</li>
+		</ul>
   </div>
 
   <div id="map">
