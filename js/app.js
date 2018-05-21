@@ -116,7 +116,11 @@ function initMap() {
     center: {lat: 26.329422, lng: -80.088615},
     zoom: 9,
     styles: styles,
-    mapTypeControl: false
+		mapTypeControl: true,
+		mapTypeControlOptions: {
+			style: google.maps.MapTypeControlStyle.HORIZONTAL_BAR,
+			position: google.maps.ControlPosition.BOTTOM_CENTER
+		}
   });
 
   // Declare a new geocoder object.
