@@ -196,28 +196,39 @@ function geocodePark(geocoder, park, parksMap) {
 // This function allows the wiki API to provide marker infoWindow content.
 function wikiInfo (park) {
 
+	// Set the wikiURL with the park.name and json and callback.
 	var wikiURL = 'https://en.wikipedia.org/w/api.php?action=opensearch&search=' + park.name + '&format=json&callback=wikiCallback';
 
+	// Declare a timeout function in case there is an issue with the wikipedia API.
 	var wikiTimeout = setTimeout(function () { alert("There was an error loading the Wikipedia page for this park."); }, 4000);
 
 	wikiText = '';
 
+	// AJAX call to retrieve wikipedia article blurb.
 	$.ajax ({
 		url: wikiURL,
 		dataType: "jsonp",
+
+		//  Upon AJAX callback success, if there is an entry, set wikiText to the blurb; else to no articles found message.
 		success: function (response) {
 			if (response[2][0] !== undefined) {
 				wikiText = response[2][0];
 			} else {
 				wikiText = "No wikipedia articles were found for this park.";
 			}
+
+			// If marker clicked, open; if open, and x closed, close.
 			if (infoWindow.marker != park.marker) {
 				infoWindow.marker = park.marker;
 				infoWindow.open(map, park.marker);
 				infoWindow.addListener('closeclick', function() {
 					infoWindow.setMarker = null;
 				});
+
+				// Error handling function.
 				clearTimeout(wikiTimeout);
+
+				// Set the content of the ajax query to the infoWindow.
 				infoWindow.setContent('<div><h1>' + park.name + '</h1>' + '<br>' + '<h3>' + wikiText + '</h3>' + '</div>');
 			};
 		}
