@@ -196,29 +196,10 @@ function geocodePark(geocoder, park, parksMap) {
 // This function allows the wiki API to provide marker infoWindow content.
 function wikiInfo (park) {
 
-	var wikiURL = 'https://en.wikipedia.org/w/api.php?action=opensearch&search=' + marker.name + '&format=json&callback=wikiCallback';
+	contentString = "<span>Test</span>"
+	infoWindow.setContent(contentString);
+	infoWindow.open(map, park.marker);
 
-	var wikiTimeout = setTimeout(function () { alert("failed to load wikipedia page"); }, 4000);
-
-	$.ajax ({
-		url: wikiURL,
- 		dataType: "jsonp",
- 		success: function (response) {
-			var articleList = response[3];
-			var articleName = response[0];
-		}
-	});
-
-	if (infoWindow.marker != marker) {
-		infoWindow.marker = marker;
-		infoWindow.open(map, marker);
-		infoWindow.addListener('closeclick', function() {
-			infoWindow.setMarker = null;
-		});
-
-		infoWindow.setContent('<div>' + '<a href ="' + articleList + '">' + articleName + '</a>'  + '</div>');
-		clearTimeout(wikiTimeout);
-	};
 }
 
 // This is the ViewModel function connecting all views, model and user input functionalities.
