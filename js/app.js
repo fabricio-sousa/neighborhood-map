@@ -179,7 +179,7 @@ function geocodePark(geocoder, park, parksMap) {
   			animation: google.maps.Animation.DROP,
 				icon: {
 					url: "img/marker/tree.png",
-					scaledSize: new google.maps.Size(64, 64)
+					scaledSize: new google.maps.Size(30, 30)
 				}
 			});
 
