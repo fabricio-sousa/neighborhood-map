@@ -200,6 +200,12 @@ function wikiInfo (park) {
 	infoWindow.setContent(contentString);
 	infoWindow.open(map, park.marker);
 
+	var wikiURL = 'https://en.wikipedia.org/w/api.php?action=opensearch&search=' + park.name + '&format=json&callback=wikiCallback';
+
+	var wikiTimeout = setTimeout(function () { alert("There was an error loading the Wikipedia page for this park."); }, 4000);
+
+	
+
 }
 
 // This is the ViewModel function connecting all views, model and user input functionalities.
