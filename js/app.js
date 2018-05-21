@@ -239,7 +239,7 @@ function wikiInfo (park) {
 				clearTimeout(wikiTimeout);
 
 				// Set the content of the ajax query to the infoWindow.
-				infoWindow.setContent('<div><h1>' + park.name + '</h1>' + '<br>' + '<h3>' + wikiText + '</h3>' + '</div>');
+				infoWindow.setContent('<div><h4>' + park.name + '</h4>' + '<br>' + '<h5>' + wikiText + '(Wikipedia)' + '</h5>' + '</div>');
 			};
 		}
 	});
