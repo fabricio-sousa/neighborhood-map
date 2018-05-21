@@ -212,7 +212,7 @@ function wikiInfo (park) {
 					infoWindow.setMarker = null;
 				});
 
-				infoWindow.setContent('<span>' + articleList + '</span>');
+				infoWindow.setContent('<div><h1>' + park.name + '</h1>' + '<h3>' + wikiInfo + '</h3>' + '</div>');
 				clearTimeout(wikiTimeout);
 			};
 		}
