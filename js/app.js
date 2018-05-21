@@ -204,8 +204,7 @@ function wikiInfo (park) {
 		url: wikiURL,
 		dataType: "jsonp",
 		success: function (response) {
-			var articleList = response[3];
-			var articleName = response[0];
+			var wikiInfo = response[2][0];
 			if (infoWindow.marker != park.marker) {
 				infoWindow.marker = park.marker;
 				infoWindow.open(map, park.marker);
@@ -213,7 +212,7 @@ function wikiInfo (park) {
 					infoWindow.setMarker = null;
 				});
 
-				infoWindow.setContent('<div>' + '<a href ="' + articleList + '">' + articleName + '</a>'  + '</div>');
+				infoWindow.setContent('<span>' + articleList + '</span>');
 				clearTimeout(wikiTimeout);
 			};
 		}
