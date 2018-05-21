@@ -194,11 +194,31 @@ function geocodePark(geocoder, park, parksMap) {
 }
 
 // This function allows the wiki API to provide marker infoWindow content.
-function wikiInfo(park) {
+function wikiInfo (park) {
 
-	contentString = "<span>Test</span>"
-	infoWindow.setContent(contentString);
-	infoWindow.open(map, park.marker);
+	var wikiURL = 'https://en.wikipedia.org/w/api.php?action=opensearch&search=' + marker.name + '&format=json&callback=wikiCallback';
+
+	var wikiTimeout = setTimeout(function () { alert("failed to load wikipedia page"); }, 4000);
+
+	$.ajax ({
+		url: wikiURL,
+ 		dataType: "jsonp",
+ 		success: function (response) {
+			var articleList = response[3];
+			var articleName = response[0];
+		}
+	});
+
+	if (infoWindow.marker != marker) {
+		infoWindow.marker = marker;
+		infoWindow.open(map, marker);
+		infoWindow.addListener('closeclick', function() {
+			infoWindow.setMarker = null;
+		});
+
+		infoWindow.setContent('<div>' + '<a href ="' + articleList + '">' + articleName + '</a>'  + '</div>');
+		clearTimeout(wikiTimeout);
+	};
 }
 
 // This is the ViewModel function connecting all views, model and user input functionalities.
@@ -211,26 +231,25 @@ var ViewModel = function() {
 	this.searchParks = ko.computed(function() {
 		var search = self.search().toLowerCase();
 		if (!search) {
-			Parks.forEach(function(place) {
-				if (place.marker) {
-					place.marker.setVisible(true);
+			Parks.forEach(function(park) {
+				if (park.marker) {
+					park.marker.setVisible(true);
 				}
 			});
 			return Parks;
 		} else {
-			return ko.utils.arrayFilter(Parks, function(place) {
-		 		var match = place.name.toLowerCase().indexOf(search) !== -1;
+			return ko.utils.arrayFilter(Parks, function(park) {
+		 		var match = park.name.toLowerCase().indexOf(search) !== -1;
 		 		if (match) {
-		 			place.marker.setVisible(true);
+		 			park.marker.setVisible(true);
 		 		} else {
-		 			place.marker.setVisible(false);
+		 			park.marker.setVisible(false);
 		 		}
 		 		return match;
 		 	});
 		}
 	});
 };
-
 
 // Google Maps API error handling.
 function apiError() {
