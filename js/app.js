@@ -1,6 +1,6 @@
 // Model Parks array of 5 parks with name and address.
 var Parks = [
-	{name: 'Simpson Park', address: '5 SW 17th Rd, Miami, FL 33129'},
+	{name: 'Simpson Park Hammock', address: '5 SW 17th Rd, Miami, FL 33129'},
 	{name: 'Secret Woods', address: '2701 W State Rd 84, Fort Lauderdale, FL 33312'},
 	{name: 'Fern Forest', address: '201 S Lyons Rd, Coconut Creek, FL 33063'},
 	{name: 'Morikami Gardens', address: '4000 Morikami Park Rd, Delray Beach, FL 33446'},
@@ -200,11 +200,17 @@ function wikiInfo (park) {
 
 	var wikiTimeout = setTimeout(function () { alert("There was an error loading the Wikipedia page for this park."); }, 4000);
 
+	wikiText = '';
+
 	$.ajax ({
 		url: wikiURL,
 		dataType: "jsonp",
 		success: function (response) {
-			var wikiInfo = response[2][0];
+			if (response[2][0] !== undefined) {
+				wikiText = response[2][0];
+			} else {
+				wikiText = "No wikipedia articles were found for this park.";
+			}
 			if (infoWindow.marker != park.marker) {
 				infoWindow.marker = park.marker;
 				infoWindow.open(map, park.marker);
@@ -212,7 +218,7 @@ function wikiInfo (park) {
 					infoWindow.setMarker = null;
 				});
 
-				infoWindow.setContent('<div><h1>' + park.name + '</h1>' + '<h3>' + wikiInfo + '</h3>' + '</div>');
+				infoWindow.setContent('<div><h1>' + park.name + '</h1>' + '<br>' + '<h3>' + wikiText + '</h3>' + '</div>');
 				clearTimeout(wikiTimeout);
 			};
 		}
