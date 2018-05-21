@@ -204,7 +204,14 @@ function wikiInfo (park) {
 
 	var wikiTimeout = setTimeout(function () { alert("There was an error loading the Wikipedia page for this park."); }, 4000);
 
-	
+	$.ajax ({
+		url: wikiURL,
+		dataType: "jsonp",
+		success: function (response) {
+			var articleList = response[3];
+			var articleName = response[0];
+		}
+	});
 
 }
 
