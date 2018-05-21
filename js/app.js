@@ -197,6 +197,13 @@ function geocodePark(geocoder, park, parksMap) {
 				map.panTo(park.marker.position)
   		});
 
+			//Resize Function
+			google.maps.event.addDomListener(window, "resize", function() {
+				var center = map.getCenter();
+				google.maps.event.trigger(map, "resize");
+				map.setCenter(center);
+			});
+
     } else {
 			alert('This location has an invalid address.');
 		}
@@ -239,7 +246,7 @@ function wikiInfo (park) {
 				clearTimeout(wikiTimeout);
 
 				// Set the content of the ajax query to the infoWindow.
-				infoWindow.setContent('<div><h4>' + park.name + '</h4>' + '<br>' + '<h5>' + wikiText + '(Wikipedia)' + '</h5>' + '</div>');
+				infoWindow.setContent('<div class="infoWindow"><h4>' + park.name + '</h4>' + '<br>' + '<h5>' + wikiText + '(Wikipedia)' + '</h5>' + '</div>');
 			};
 		}
 	});
