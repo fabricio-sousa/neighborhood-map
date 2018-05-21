@@ -1,9 +1,9 @@
 // Model Parks array of 5 parks with name and address.
 var Parks = [
 	{name: 'Simpson Park Hammock', address: '5 SW 17th Rd, Miami, FL 33129'},
-	{name: 'Secret Woods', address: '2701 W State Rd 84, Fort Lauderdale, FL 33312'},
-	{name: 'Fern Forest', address: '201 S Lyons Rd, Coconut Creek, FL 33063'},
-	{name: 'Morikami Gardens', address: '4000 Morikami Park Rd, Delray Beach, FL 33446'},
+	{name: 'Gumbo Limbo Environmental Complex', address: '1801 N Ocean Blvd, Boca Raton, FL 33432'},
+	{name: 'Everglades National Park', address: '815 Oyster Bar Lane, Everglades City, FL 34139'},
+	{name: 'Morikami Museum and Japanese Gardens', address: '4000 Morikami Park Rd, Delray Beach, FL 33446'},
 	{name: 'Quiet Waters Park', address: '401 S Powerline Rd, Deerfield Beach, FL 33442'}
 ];
 
@@ -217,12 +217,12 @@ function wikiInfo (park) {
 				infoWindow.addListener('closeclick', function() {
 					infoWindow.setMarker = null;
 				});
-
-				infoWindow.setContent('<div><h1>' + park.name + '</h1>' + '<br>' + '<h3>' + wikiText + '</h3>' + '</div>');
 				clearTimeout(wikiTimeout);
+				infoWindow.setContent('<div><h1>' + park.name + '</h1>' + '<br>' + '<h3>' + wikiText + '</h3>' + '</div>');
 			};
 		}
 	});
+
 }
 
 // This is the ViewModel function connecting all views, model and user input functionalities.
