@@ -194,6 +194,7 @@ function geocodePark(geocoder, park, parksMap) {
       google.maps.event.addListener(park.marker, 'click', function() {
   			wikiInfo(park);
   			markerBounce(park.marker);
+				map.panTo(park.marker.position)
   		});
 
     } else {
