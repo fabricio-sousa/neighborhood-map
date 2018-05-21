@@ -206,20 +206,18 @@ function wikiInfo (park) {
 		success: function (response) {
 			var articleList = response[3];
 			var articleName = response[0];
+			if (infoWindow.marker != park.marker) {
+				infoWindow.marker = park.marker;
+				infoWindow.open(map, park.marker);
+				infoWindow.addListener('closeclick', function() {
+					infoWindow.setMarker = null;
+				});
+
+				infoWindow.setContent('<div>' + '<a href ="' + articleList + '">' + articleName + '</a>'  + '</div>');
+				clearTimeout(wikiTimeout);
+			};
 		}
 	});
-
-	if (infoWindow.marker != park.marker) {
-		infoWindow.marker = park.marker;
-		infoWindow.open(map, park.marker);
-		infoWindow.addListener('closeclick', function() {
-			infoWindow.setMarker = null;
-		});
-
-		infoWindow.setContent('<div>' + '<a href ="' + articleList + '">' + articleName + '</a>'  + '</div>');
-		clearTimeout(wikiTimeout);
-	};
-
 }
 
 // This is the ViewModel function connecting all views, model and user input functionalities.
