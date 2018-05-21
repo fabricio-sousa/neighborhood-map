@@ -196,10 +196,6 @@ function geocodePark(geocoder, park, parksMap) {
 // This function allows the wiki API to provide marker infoWindow content.
 function wikiInfo (park) {
 
-	contentString = "<span>Test</span>"
-	infoWindow.setContent(contentString);
-	infoWindow.open(map, park.marker);
-
 	var wikiURL = 'https://en.wikipedia.org/w/api.php?action=opensearch&search=' + park.name + '&format=json&callback=wikiCallback';
 
 	var wikiTimeout = setTimeout(function () { alert("There was an error loading the Wikipedia page for this park."); }, 4000);
@@ -212,6 +208,17 @@ function wikiInfo (park) {
 			var articleName = response[0];
 		}
 	});
+
+	if (infoWindow.marker != park.marker) {
+		infoWindow.marker = park.marker;
+		infoWindow.open(map, park.marker);
+		infoWindow.addListener('closeclick', function() {
+			infoWindow.setMarker = null;
+		});
+
+		infoWindow.setContent('<div>' + '<a href ="' + articleList + '">' + articleName + '</a>'  + '</div>');
+		clearTimeout(wikiTimeout);
+	};
 
 }
 
