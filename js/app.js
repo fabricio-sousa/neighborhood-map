@@ -113,7 +113,7 @@ function initMap() {
 
   // Constructor creates a new map.
   map = new google.maps.Map(document.getElementById('map'), {
-    
+
     zoom: 9,
     styles: styles,
 		mapTypeControl: true,
@@ -163,7 +163,10 @@ function markerBounce(marker) {
 // geocodes the address passed from the forEach function, for each park in Parks.
 function geocodePark(geocoder, park, parksMap) {
 
+	// Store the current park address in a var address.
+	// Load the custom Google Maps icons.
 	var address = park.address;
+	var iconBase = 'https://maps.google.com/mapfiles/kml/shapes/';
 
 	// Uses Google's geocode method to parse the latlng of the park.address then set it on map.
 	geocoder.geocode({'address': address}, function(results, status) {
@@ -175,7 +178,8 @@ function geocodePark(geocoder, park, parksMap) {
 			park.marker = new google.maps.Marker({
 				map: parksMap,
         position: results[0].geometry.location,
-  			animation: google.maps.Animation.DROP
+  			animation: google.maps.Animation.DROP,
+				icon: iconBase + 'parking_lot_maps.png'
 			});
 
 			// Add name and marker to marker object.
