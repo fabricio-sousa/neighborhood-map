@@ -1,4 +1,4 @@
-# Udacity Full Stack Web Developer Nanodegree Neighborhood Map Project
+# Udacity Full Stack Web Developer Nanodegree | Neighborhood Map Project
 
 ## Description
 
