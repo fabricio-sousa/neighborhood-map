@@ -8,7 +8,7 @@ This is a single page application featuring a map of South Florida showing a lis
 
 Javascript, KnockoutJS, jQuery, Bootstrap, the Google Maps API, Wikipedia's API and of course html and css. Google Map styles from SnazzyMaps.
 
-## HOWTO
+## Installation and How To Run
 
 1. Clone or download repo.
 2. In the repo directory, run index.html
