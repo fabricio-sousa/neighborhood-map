@@ -12,4 +12,3 @@ Javascript, KnockoutJS, jQuery, Bootstrap, the Google Maps API, Wikipedia's API 
 
 1. Clone or download repo.
 2. In the repo directory, run index.html
-3. You can also visit the live version [here](https://fabricio-sousa.github.io/).
